@@ -1,0 +1,13 @@
+{
+    "name": "Sentinel RFID Scanner",
+    "version": "1.40",
+    "new_install_prompt_erase": true,
+    "builds": [
+      {
+        "chipFamily": "ESP32",
+        "parts": [
+          { "path": "app.bin", "offset": 0 }
+        ]
+      }
+    ]
+  }
