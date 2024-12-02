@@ -1,48 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Improv Wi-Fi Demo</title>
+    <title>Firmware Webflasher</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap">
     <style>
-        body,h1 {font-family: "Raleway", sans-serif}
-        body, html {height: 100%}
-        .bgimg {
-        background-image: url('bg.jpg');
-        min-height: 100%;
-        background-position: center;
-        background-size: cover;
+        html {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #F4F5F4;
+            color: #131413;
+            gap: 32px;
         }
     </style>
     <script type="module" src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module"></script>
 </head>
+
 <body>
 
-<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-  <div class="w3-display-topleft w3-padding-large w3-medium">
-    <a class="w3-button w3-transparent w3-border" href="https://github.com/jnthas/improv-wifi-demo">@JNTHAS</a>
-  </div>
+<div class="main">
   <div class="w3-display-middle">
-    <h1 class="w3-center w3-jumbo w3-animate-top">ESP32 Improv Wi-Fi Demo</h1>
-      <p class="w3-center">This project demonstrates the use of <a href="https://www.improv-wifi.com/">Improv WiFi</a> via Serial communication. By clicking on the button below, the firmware of a <a href="https://github.com/jnthas/improv-wifi-demo">simple webserver</a> will be installed in the ESP32 and the configuration to connect to the WiFi will be started.</p>
+    <h1 class="w3-center w3-jumbo w3-animate-top">Sentinel Companion Webflasher</h1>
+      <p class="w3-center">Make sure to close anything using your devices com port (e.g. Serial monitor)</p>
 
     <div class="w3-center w3-padding-24">
         <esp-web-install-button manifest="firmware/manifest.json">
-            <button slot="activate" class="w3-button w3-yellow w3-round-xxlarge w3-padding-large">Flash Firmware</button>
+            <button slot="activate" class="w3-button w3-green w3-round-xxlarge w3-padding-large">Connect</button>
             <span slot="unsupported">Ah snap, your browser doesn't work!</span>
             <span slot="not-allowed">Ah snap, you are not allowed to use this on HTTP!</span>
         </esp-web-install-button>
     </div>
-
-    <hr class="w3-border-grey" style="margin:auto;width:40%">
-    <p class="w3-large w3-center">Powered by <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools</a></p>
-  
-  </div>
-  <div class="w3-display-bottomleft w3-padding-large">
-    Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
-  </div>
 </div>
 
 </body>
