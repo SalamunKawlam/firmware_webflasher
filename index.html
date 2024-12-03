@@ -49,6 +49,7 @@
                 color: white;
                 padding: 24px 48px;
                 font-size: 24px;
+                display: none;
             }
 
             .btn:hover {
@@ -63,12 +64,22 @@
             <p class="subheading">Make sure to close anything using your devices com port (e.g. Serial monitor)</p>
         </div>
         
-        <div class="">
+        <div class="esp-web-tool">
             <esp-web-install-button manifest="firmware/manifest.json">
                 <button slot="activate" class="btn">Connect</button>
-                <span slot="unsupported">Ah snap, your browser doesn't work!</span>
-                <span slot="not-allowed">Ah snap, you are not allowed to use this on HTTP!</span>
+                <span slot="unsupported" class="browser-error">Ah snap, your browser doesn't work!</span>
+                <span slot="not-allowed" class="http-error">Ah snap, you are not allowed to use this on HTTP!</span>
             </esp-web-install-button>
         </div>
+
+        <script>
+            window.addEventListener('load', function() {
+                // Wait for the page to load completely, then show the button
+                const button = document.querySelector('.btn');
+                if (button) {
+                    button.style.display = 'block';
+                }
+            });
+        </script>
     </body>
 </html>
