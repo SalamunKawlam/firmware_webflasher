@@ -6,7 +6,7 @@
       {
         "chipFamily": "ESP32",
         "parts": [
-          { "path": "app.bin", "offset": 0 }
+          { "path": "Sentinel_RFID_Scanner.bin", "offset": 0 }
         ]
       }
     ]
