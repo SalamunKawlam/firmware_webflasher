@@ -1,0 +1,14 @@
+{
+    "name": "Sentinel HID (RFID To Excel)",
+    "version": "2.10",
+    "new_install_prompt_erase": true,
+    "new_install_improv_wait_time": 0,
+    "builds": [
+      {
+        "chipFamily": "ESP32",
+        "parts": [
+          { "path": "hid.bin", "offset": 0 }
+        ]
+      }
+    ]
+  }

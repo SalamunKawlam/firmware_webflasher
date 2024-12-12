@@ -38,6 +38,7 @@
             }
 
             .subheading {
+                display: none;
                 margin: 0;
                 text-align: center;
             }
@@ -55,29 +56,102 @@
             .btn:hover {
                 background-color: #196136;
             }
+
+            /* Segment Picker Styles */
+            .segment-picker {
+                display: none;
+                background: #eee;
+                border-radius: 100px;
+                overflow: hidden;
+                padding: 4px;
+                gap: 4px;
+                max-width: 100%;
+            }
+
+            .segment-picker input[type="radio"] {
+                display: none;
+            }
+
+            .segment-picker label {
+                display: flex;
+                border-radius: 100px;
+                flex: 1;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 12px 8px;
+                font-size: 16px;
+                font-weight: 500;
+                cursor: pointer;
+                background: transparent;
+                color: #555;
+                /* transition: background-color 0.3s, color 0.3s; */
+            }
+
+            .segment-picker input[type="radio"]:checked + label {
+                background: #fff;
+                color: #333;
+                /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); */
+            }
+
+            .segment-picker label:hover {
+                background: #ddd;
+            }
         </style>
     </head>
 
     <body>
-        <div class="main">
+        <div class="main" id="main">
             <h1 class="heading">Sentinel Companion Webflasher</h1>
-            <p class="subheading">Make sure to close anything using your devices com port (e.g. Serial monitor)</p>
+            <p class="subheading" id="subheading">Make sure to close anything using your devices com port (e.g. Serial monitor)</p>
         </div>
-        
+
+        <div class="segment-picker" id="segment-picker">
+            <input type="radio" id="rfid" name="firmware" value="firmware/rfid.json" checked>
+            <label for="rfid">RFID Scanner</label>
+            <input type="radio" id="proximity" name="firmware" value="firmware/proximity.json">
+            <label for="proximity">Proximity Scanner</label>
+            <input type="radio" id="hid" name="firmware" value="firmware/hid.json">
+            <label for="hid">HID (RFID To Excel)</label>
+        </div>
+
         <div class="esp-web-tool">
-            <esp-web-install-button manifest="firmware/manifest.json">
+            <esp-web-install-button id="webInstallButton" manifest="firmware/rfid.json">
                 <button slot="activate" class="btn">Connect</button>
-                <span slot="unsupported" class="browser-error">Ah snap, your browser doesn't work!</span>
-                <span slot="not-allowed" class="http-error">Ah snap, you are not allowed to use this on HTTP!</span>
+                <span slot="unsupported" class="browser-error">Your browser does not support webflashing</span>
+                <span slot="not-allowed" class="http-error">Webflashing is not allowed on HTTP</span>
             </esp-web-install-button>
         </div>
 
         <script>
             window.addEventListener('load', function() {
                 // Wait for the page to load completely, then show the button
-                const button = document.querySelector('.btn');
+                const button        = document.querySelector('.btn');
+                const subheading    = document.getElementById('subheading');
+                const segment       = document.getElementById('segment-picker');
+
                 if (button) {
-                    button.style.display = 'block';
+                    button.style.display        = 'block';
+                    subheading.style.display    = 'block';
+                    segment.style.display       = 'flex';
+                }
+
+                // Change manifest dynamically based on radio input
+                const radios            = document.querySelectorAll('input[name="firmware"]');
+                const webInstallButton  = document.getElementById('webInstallButton');
+
+                radios.forEach(radio => {
+                    radio.addEventListener('change', function() {
+                        if (radio.checked) {
+                            webInstallButton.setAttribute('manifest', radio.value);
+                        }
+                    });
+                });
+
+                const main = document.getElementById('main');
+
+                if (main && segment) {
+                    segment.style.width = `${main.offsetWidth}px`;
                 }
             });
         </script>
