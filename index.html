@@ -79,7 +79,7 @@
                 align-items: center;
                 justify-content: center;
                 text-align: center;
-                padding: 12px 8px;
+                padding: 12px 12px;
                 font-size: 16px;
                 font-weight: 500;
                 cursor: pointer;
@@ -107,6 +107,8 @@
         </div>
 
         <div class="segment-picker" id="segment-picker">
+            <input type="radio" id="rfid-rtc" name="firmware" value="firmware/rfid_rtc.json" checked>
+            <label for="rfid-rtc">RFID Scanner (RTC)</label>
             <input type="radio" id="rfid" name="firmware" value="firmware/rfid.json" checked>
             <label for="rfid">RFID Scanner</label>
             <input type="radio" id="proximity" name="firmware" value="firmware/proximity.json">
@@ -151,7 +153,7 @@
                 const main = document.getElementById('main');
 
                 if (main && segment) {
-                    segment.style.width = `${main.offsetWidth}px`;
+                    segment.style.width = `${main.offsetWidth+main.offsetWidth*0.2}px`;
                 }
             });
         </script>
