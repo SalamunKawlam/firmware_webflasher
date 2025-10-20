@@ -1,6 +1,6 @@
 {
     "name": "Sentinel RFID Scanner v3",
-    "version": "3.0.7",
+    "version": "4.0.0",
     "new_install_prompt_erase": true,
     "new_install_improv_wait_time": 0,
     "builds": [
